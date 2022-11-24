@@ -46,3 +46,4 @@ mult x y z = x*y*z
 -- mult takes an integer x and returns a function mult ,
 -- which in turn takes an integer y and returns a function mult x y,
 -- which finally takes an integer z and returns the result x*y*z
+42 : [] is the same as [42]
