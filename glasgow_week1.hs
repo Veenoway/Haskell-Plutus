@@ -154,3 +154,9 @@ tail [4,5,6] -- > [5,6]
 -- for example defining xs = [1,2,xs !! 5,4] will not result in an error as long as you don’t access the third element.
 -- Keep in mind that lists are also immutable. As a result, if you define xs2 = xs ++ xs and try to access the third element xs2 !! 2 will still result in an error because xs has not been modified:
 
+-- Zip function
+zip [1,2,3] [4,5,6] -- return [(1,4),(2,5),(3,6)]
+zip [1,2,3] "abc" -- return [(1,'a'),(2,'b'),(3,'c')]
+zip3 "gla" "bei" "nai" -- return [('g','b','n'),('l','e','a'),('a','i','i')]
+zipWith max [1,2,3] [0,2,4] -- return [1,2,4]
+zipWith (+) [1,2,3] [0,2,4] -- return [1,4,7]
