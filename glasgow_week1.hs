@@ -160,3 +160,41 @@ zip [1,2,3] "abc" -- return [(1,'a'),(2,'b'),(3,'c')]
 zip3 "gla" "bei" "nai" -- return [('g','b','n'),('l','e','a'),('a','i','i')]
 zipWith max [1,2,3] [0,2,4] -- return [1,2,4]
 zipWith (+) [1,2,3] [0,2,4] -- return [1,4,7]
+zipWith (\x ->(\y -> (x,y))) [1,2,3] "abc" -- return [(1,'a'),(2,'b'),(3,'c')]
+
+-- polymorphic function
+fst :: (a,b) -> a
+head :: [a] -> a
+take :: Int -> [a] -> [a] 
+take 5 [1,3,5,6,7,8,9] --return [1,3,5,6,7]
+zip :: [a] -> [b] -> [(a,b)]
+id :: a -> a
+
+Num -- Numeric type
+Eq -- Equality type
+Ord -- Ordered type
+
+(+) :: Num a => a -> a -> a
+(==) :: Eq a => a -> a -> Bool
+(<) :: Ord a => a -> a -> Bool
+
+-- Exercice :
+-- What are the typs of the following values?
+
+-- 1
+['a','b','c']
+('a','b','c')
+[(False,'0',(True,'1'))]
+([False,True],['0','1'])
+[tail,init,reverse]
+
+-- 2
+second xs = head (tail xs)
+swap (x,y) = (y,x)
+pair x y = (x,y)
+double x = x*2
+palindrome xs = reverse xs == xs
+twice f x = f (f x)
+
+-- 3
+-- Check your answers using Ghci
