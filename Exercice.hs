@@ -30,7 +30,19 @@ getResult :: Float -> Float -> Float
 getResult x y = x / multiply y
 
 ageOn :: Planet -> Float -> Float
-ageOn planet seconds = getResult seconds (earthYearsTo planet )
+ageOn planet seconds = getResult seconds (earthYearsTo planet)
 
--- correction
+-- 
 
+
+
+verifyAllChar :: Char -> [Bool]
+verifyAllChar t =
+    [x == t | x <- ['a'..'z']] 
+
+    
+collatz :: Integer -> Bool -> Maybe Integer
+collatz n =
+  case n of 
+  even -> n / 2
+  odd -> 3*n + 1
