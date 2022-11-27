@@ -182,19 +182,27 @@ Ord -- Ordered type
 -- What are the typs of the following values?
 
 -- 1
-['a','b','c']
-('a','b','c')
-[(False,'0',(True,'1'))]
-([False,True],['0','1'])
-[tail,init,reverse]
+['a','b','c'] === [Char]
+('a','b','c') === (Char,Char,Char)
+[(False,'0',(True,'1'))] === ((Bool),(Char))
+([False,True],['0','1']) === [[Bool],[Char]]
+[tail,init,reverse] === [[a] -> [a]]
 
 -- 2
-second xs = head (tail xs)
-swap (x,y) = (y,x)
+second xs = head (tail xs) 
+second [1,2,3,4] == 2
+second :: [Int] -> Int 
+second :: [a] -> a -- polymorphic
+swap (x,y) = (y,x) 
+swap :: (a,b)-> (b,a)
 pair x y = (x,y)
-double x = x*2
+pair :: a -> b -> (a,b)
+double x = x*2 
+double :: Int -> Int
 palindrome xs = reverse xs == xs
 twice f x = f (f x)
 
 -- 3
 -- Check your answers using Ghci
+
+fst
