@@ -116,3 +116,61 @@ Sorry, I can't display this result.
 *Exception: Prelude.tail: empty list
 λ next
 λ  
+
+-- Conditional 
+
+Type Haskell expressions in here.
+λ not True
+False
+:: Bool
+λ not (not False)
+False
+:: Bool
+λ True && True
+True
+:: Bool
+λ False && True
+False
+:: Bool
+λ True || False
+True
+:: Bool
+λ False || False
+False
+:: Bool
+λ True `xor` False
+True
+:: Bool
+λ [(x,y) | x<-[False, True], y<-[False, True]]
+[(False,False),(False,True),(True,False),(True,True)]
+:: [(Bool, Bool)]
+λ map (\inputs -> xor (fst inputs) (snd inputs)) [(x,y) | x<-[False, True], y<-[False, True]]
+[False,True,True,False]
+:: [Bool]
+λ and [False, True, False, True]
+False
+:: Bool
+λ and [1,2,3]
+No instance for (Num Bool) arising from the literal ‘1’
+In the expression: 1
+In the first argument of ‘and’, namely ‘[1, 2, 3]’
+In the expression: and [1, 2, 3]
+λ if 2*2==4 then "happy" else "sad"
+"happy"
+:: [Char]
+λ if 1 then 0 else -1
+Could not deduce (Num Bool) arising from the literal ‘1’
+from the context (Num a)
+bound by the inferred type of it :: Num a => a at <interactive>:1:1
+In the expression: 1
+In the expression: if 1 then 0 else - 1
+In the expression: let in if 1 then 0 else - 1
+λ if False then 42 else "foo"
+No instance for (Num [Char]) arising from the literal ‘42’
+In the expression: 42
+In the expression: if False then 42 else "foo"
+In the expression: let in if False then 42 else "foo"
+λ if True then 42 else pi
+42.0
+:: Floating a => a
+λ  
