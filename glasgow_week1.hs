@@ -205,4 +205,11 @@ twice f x = f (f x)
 -- 3
 -- Check your answers using Ghci
 
-fst
+putStrLn "hello world" -- equivalent to console.log
+putStrLn ("Hello" ++ " World!")
+do { putStrLn "what is your name?"; x <- getLine; putStrLn ("hello " ++ x) }
+do { putStrLn "what is your name?"; n <-getLine; let nUpper = map toUpper n in putStrLn ("HELLO " ++ nUpper) }
+read "42" :: Int
+read "42"::Float
+-- show convert to String
+show 42
