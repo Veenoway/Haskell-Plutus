@@ -34,15 +34,23 @@ ageOn planet seconds = getResult seconds (earthYearsTo planet)
 
 -- 
 
-
+-- Too end when learning skills
 
 verifyAllChar :: Char -> [Bool]
 verifyAllChar t =
     [x == t | x <- ['a'..'z']] 
-
     
 collatz :: Integer -> Bool -> Maybe Integer
 collatz n =
   case n of 
   even -> n / 2
   odd -> 3*n + 1
+
+-- Guessing game Exercice part 1
+
+check :: String -> String -> Char -> (Bool,String)
+check word display c 
+    = (c `elem` word, [
+        if x==c
+            then c
+            else y | (x,y) <- zip word display])
