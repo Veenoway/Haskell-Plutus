@@ -40,37 +40,65 @@ verifyAllChar :: Char -> [Bool]
 verifyAllChar t =
     [x == t | x <- ['a'..'z']] 
     
-collatz :: Integer -> Bool -> Maybe Integer
-collatz n =
-  case n of 
-  even -> n / 2
-  odd -> 3*n + 1
+-- collatz :: Integer -> Bool -> Maybe Integer
+-- collatz n =
+--   case n of 
+--   even -> n / 2
+--   odd -> 3*n + 1
 
 -- Guessing game Exercice part 1
 
+-- Create a check condition
 check :: String -> String -> Char -> (Bool,String)
-check word display c 
-    = (c `elem` word, [
-        if x==c
-            then c
-            else y | (x,y) <- zip word display])
+check word display c = 
+    -- return true or false 
+    (elem c word, [if x==c 
+        then c
+        else y | (x,y) <- zip word display])
 
-turn :: String -> String -> Int -> IO ()
+-- Verifiy if win / lose or retry
+turn :: String -> String -> Int -> IO()
 turn word display n =
-  do if n==0
-       then putStrLn "You lose"
-       else if word==display
-              then putStrLn "You win!"
-              else mkguess word display n
+    do if n==0
+        then putStrLn "Game over, try again!"
+        else if display == word 
+            then putStrLn "Congratulation, you won the game!"
+            else mkguess word display n
 
-mkguess :: String -> [Char] -> Int -> IO ()
+
+mkguess :: String -> String -> Int -> IO()
 mkguess word display n =
-  do putStrLn (display ++ "  " ++ take n (repeat '*'))
-     putStr "  Enter your guess: "
-     q <- getLine
-     let (correct, display') = check word display (q!!0)
-     let n' = if correct then n else n-1
-     turn word display' n'
+    do 
+        putStrLn (display ++ " " ++ take n (repeat '*'))
+        putStrLn " Enter your guess:"
+        q <- getLine
+        let (correct,display') = check word display (q!!0)
+        let n' = if correct then n else n-1
+        turn word display' n'
 
-starman :: String -> Int -> IO ()
+starman :: String -> Int -> IO()
 starman word n = turn word ['-' | x <- word] n
+
+-- Create another game by myself
+
+verify :: Int -> Int -> Int -> IO()
+verify guess jackpot n =
+   do if guess == jackpot
+        then putStrLn "Congrats you find the jackpot!"
+        else if n == 0 
+            then putStrLn "Sorry you losed"
+            else checkGuess guess jackpot n
+
+checkGuess :: Int -> Int -> Int -> IO()
+checkGuess guess jackpot n =
+    do 
+        putStrLn ("Your remaining star" ++ take n (repeat '*'))
+        putStrLn " Enter a number"
+        h <- getLine 
+        let (correct,guess') = verify guess jackpot n
+        let n' = if correct then n else n-1
+        verify guess jackpot n'
+
+
+
+
