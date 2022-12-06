@@ -212,4 +212,23 @@ do { putStrLn "what is your name?"; n <-getLine; let nUpper = map toUpper n in p
 read "42" :: Int
 read "42"::Float
 -- show convert to String
-show 42
+show 42putStrLn (show (6*7))
+
+-- list comprehension
+
+length :: [a] -> Int           -- function type
+length [] = 0                  -- base case
+length (x:xs) = 1 + length xs  -- recursion case
+
+filter :: (a->Bool) -> [a] -> [a]
+filter (<5) [3,9,2,12,6,4] -- > [3,2,4]
+
+filter :: (a -> Bool) -> [a] -> [a]
+filter pred []    = []
+filter pred (x:xs)
+  | pred x         = x : filter pred xs
+  | otherwise      = filter pred xs
+
+-- Perform a computation on each element of a list: map
+-- Iterate over a list, from left to right: foldl
+-- Iterate over a list, from right to left: foldr

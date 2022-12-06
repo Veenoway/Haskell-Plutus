@@ -51,7 +51,6 @@ verifyAllChar t =
 -- Create a check condition
 check :: String -> String -> Char -> (Bool,String)
 check word display c = 
-    -- return true or false 
     (elem c word, [if x==c 
         then c
         else y | (x,y) <- zip word display])
@@ -95,9 +94,10 @@ checkGuess guess jackpot n =
         putStrLn ("Your remaining star" ++ take n (repeat '*'))
         putStrLn " Enter a number"
         h <- getLine 
-        let (correct,guess') = verify guess jackpot n
+        let correct = verify guess jackpot n
         let n' = if correct then n else n-1
         verify guess jackpot n'
+
 
 
 
