@@ -232,3 +232,43 @@ filter pred (x:xs)
 -- Perform a computation on each element of a list: map
 -- Iterate over a list, from left to right: foldl
 -- Iterate over a list, from right to left: foldr
+
+map :: (a -> b) -> [a] -> [b]
+map _ []     = []
+map f (x:xs) = f x : map f xs
+
+(.) :: (b->c) -> (a->b) -> a -> c
+(f . g) x = f (g x)
+map f (map g xs) = map (f . g) xs
+map :: (a -> b) -> [a] -> [b]
+map _ []     = []
+map f (x:xs) = f x : map f xs
+
+foldl :: (b->a->b) -> b -> [a] -> b
+foldl (+) z []          -- > z
+foldl (+) z [x0]        -- > z + x0
+foldl (+) z [x0,x1]     -- > (z + x0) + x1
+foldl (+) z [x0,x1,x2]  -- > ((z + x0) + x1) + x2
+
+-- recursive definition of foldl
+foldl        :: (b -> a -> b) -> b -> [a] -> b
+foldl f z0 xs0 = lgo z0 xs0
+             where
+                lgo z []     =  z
+                lgo z (x:xs) = lgo (f z x) xs
+
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr (+) z []          -- > z
+foldr (+) z [x0]        -- > x0 + z
+foldr (+) z [x0,x1]     -- > x0 + (x1 + z)
+foldr (+) z [x0,x1,x2]  -- > x0 + (x1 + (x2 + z))
+
+-- recursive definition of foldr
+foldr            :: (a -> b -> b) -> b -> [a] -> b
+foldr k z = go
+          where
+            go []     = z
+            go (y:ys) = y `k` go ys
+
+[x0,x1,x2] -- can also be write
+x0 :  x1 : x2 : []
