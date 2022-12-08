@@ -272,3 +272,19 @@ foldr k z = go
 
 [x0,x1,x2] -- can also be write
 x0 :  x1 : x2 : []
+
+foldr (:)  [] [x0,x1,x2]
+  -- >
+  x0 :  x1 : x2 : []
+
+-- some application :
+
+sum xs = foldr (+) 0 xs
+product xs = foldr (*) 1 xs
+
+sum      = foldr (+) 0
+product  = foldr (*) 1
+
+  map :: (a -> b) -> [a] -> [b]
+    foldl :: (b -> a -> b) -> b -> [a] -> b 
+    foldr :: (a -> b -> b) -> b -> [a] -> b
