@@ -288,3 +288,28 @@ product  = foldr (*) 1
   map :: (a -> b) -> [a] -> [b]
     foldl :: (b -> a -> b) -> b -> [a] -> b 
     foldr :: (a -> b -> b) -> b -> [a] -> b
+
+-- conditional functions
+length [] = 0
+length x:xs = 1 + length xs
+
+length lst =
+if lst == []
+  then 0
+  else let x:xs = lst in 1 + length xs
+
+length lst
+  | lst == [] = 0
+  | otherwise = let x:xs = lst in 1 + length xs
+
+f = f' where f' 1 = 0; f' x = x + f' (x-1)
+
+filter (<5) [3,9,2,12,6,4]
+
+-- possible recurse function to filtre
+filter pred lst
+  | null lst = []
+  | otherwise = if pred x 
+     then x:filter pred xs
+     else filter pred xs
+       where x:xs=lst
