@@ -313,3 +313,16 @@ filter pred lst
      then x:filter pred xs
      else filter pred xs
        where x:xs=lst
+
+    filter :: (a -> Bool) -> [a] -> [a]
+    filter pred []    = []
+    filter pred xs
+      | pred x         = x : filter pred xs
+      | otherwise      = filter pred (x:xs)
+
+ foldl (\acc elt -> acc++[elt]) "" "A string"
+   foldl (+) (map (*2) [1..8])
+   foldl (+) 0 (map (*2) [1..8])
+
+   foldl (/) 16 [8,4,2,1]
+  -- 16/8 = 2.0 2.0 / 4 = 0.5 0.5 / 2 = 0.25. 0.25 / 1 = 0.25.
